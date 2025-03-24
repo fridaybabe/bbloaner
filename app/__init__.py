@@ -5,13 +5,13 @@ from app.utils.firebase import initialize_firebase
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(Config)  # Load config first
 
-    # Initialize extensions
+    # Initialize database
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Initialize Firebase
+    # Initialize Firebase (after config is loaded)
     initialize_firebase()
 
     return app
